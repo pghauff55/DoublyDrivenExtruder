@@ -1,14 +1,23 @@
-res=20;
+res=60;
 r_608=11.5;
 r_m8=4.25;
 r_m4=2.25;
 r_jhead=8.35;
 
 
+
+//hingeplate();
+
+drive_gear();
 //gears();
+//translate([0,-20,40])rotate([0,180,0])gears();
 //main();
+//translate([0,20,26])scale([0.97,0.97,1.0])gears2();
 
-
+module drive_gear(){
+//translate([-40,20,24])
+mirror([0,0,1])import("extruder_drive_gear.stl");
+}
 module hingeplate(){
 translate([15,0,-15])
 difference(){
@@ -50,17 +59,18 @@ module gears2(){
 //import gears
     difference(){
     union(){
-    translate([0,0,2])cylinder(10,21,21,center=true,$fn=res);
-translate([0,0,32])rotate([0,0,90])import("ParametricHerringboneGears-1.stl");
+    translate([0,0,1.5])cylinder(9,21,21,center=true,$fn=res);
+translate([0,0,6])rotate([0,0,90])import("ParametricHerringboneGears-1.stl");
 //import gears
+        translate([0,0,-25])
     difference(){
 translate([0,0,30])rotate([0,0,0])mirror([0,0,1])import("ParametricHerringboneGears.stl");
         cube([200,200,44],center=true);
     }
 }
     cylinder(100,4.25,4.25,center=true,$fn=res);
-    translate([0,0,34])cylinder(10,6.75,6.75,center=true,$fn=6);
-    translate([0,0,40])cylinder(10,8.25,8.25,center=true,$fn=res);
+    translate([0,0,4])cylinder(10,7.85,7.85,center=true,$fn=6);
+    translate([0,0,10])cylinder(10,8.25,8.25,center=true,$fn=res);
 }
 }
 
@@ -68,7 +78,7 @@ module gears(){
 //import gears
     difference(){
     union(){
-    translate([0,0,12])cylinder(10,7,7,center=true,$fn=res);
+    translate([0,0,12])cylinder(10,8.15,8.15,center=true,$fn=res);
 translate([0,0,0])rotate([0,0,90])import("ParametricHerringboneGears-1.stl");
 //import gears
    // difference(){
@@ -77,7 +87,7 @@ translate([0,0,0])rotate([0,0,90])import("ParametricHerringboneGears-1.stl");
    // }
 }
    cylinder(100,4.25,4.25,center=true,$fn=res);
-   translate([0,0,3])cylinder(10,6.75,6.75,center=true,$fn=6);
+   translate([0,0,5])cylinder(10,7.5,7.5,center=true,$fn=6);
    translate([0,0,0])cylinder(10,8.25,8.25,center=true,$fn=res);
 }
 }
@@ -104,19 +114,24 @@ translate([0,20,0])rotate([0,0,180])translate([38,0,0])nema17mount();
 module nema17mount(){
 dist_Nem17= 31.04/2;
 dist_nema2=14;
-h=4;
+h=8;
     
-translate([0,-1,17]){
-translate([-22.5,22,-28])cube([35,5,30]);
+translate([0,-1,15]){
+translate([-22.5,22,-29])cube([34.5,7,33]);
 //cylinder(40,2.5,2.5,center=true,$fn=res);
 difference(){
-translate([-6.50,0])cube([2*dist_Nem17+dist_nema2-7,2*dist_Nem17+dist_nema2,h],center=true);
+translate([-6.50,0])cube([2*dist_Nem17+dist_nema2-7.5,2*dist_Nem17+dist_nema2,h],center=true);
 cylinder(h+1,14,14,center=true,$fn=res);
     rotate([0,0,0]){
-translate([dist_Nem17,dist_Nem17,0])cylinder(h+1,1.5,1.5,center=true,$fn=res);
-translate([-dist_Nem17,dist_Nem17,0])cylinder(h+1,1.5,1.5,center=true,$fn=res);
-translate([dist_Nem17,-dist_Nem17,0])cylinder(h+1,1.5,1.5,center=true,$fn=res);
-translate([-dist_Nem17,-dist_Nem17,0])cylinder(h+1,1.5,1.5,center=true,$fn=res);
+translate([dist_Nem17,dist_Nem17,0])cylinder(h+1,1.65,1.65,center=true,$fn=res);
+translate([-dist_Nem17,dist_Nem17,0])cylinder(h+1,1.65,1.65,center=true,$fn=res);
+translate([dist_Nem17,-dist_Nem17,0])cylinder(h+1,1.65,1.65,center=true,$fn=res);
+translate([-dist_Nem17,-dist_Nem17,0])cylinder(h+1,1.65,1.65,center=true,$fn=res);
+translate([dist_Nem17,dist_Nem17,4])cylinder(h/2+1,3.65,3.65,center=true,$fn=res);
+translate([-dist_Nem17,dist_Nem17,4])cylinder(h/2+1,3.65,3.65,center=true,$fn=res);
+translate([dist_Nem17,-dist_Nem17,4])cylinder(h/2+1,3.65,3.65,center=true,$fn=res);
+translate([-dist_Nem17,-dist_Nem17,4])cylinder(h/2+1,3.65,3.65,center=true,$fn=res);
+
     }
 }
 }
@@ -127,10 +142,15 @@ module bolts(){
 translate([-40,12,0]){
 translate([0,0,-12])rotate([0,90,0])cylinder(20,r_m4,r_m4,center=true,$fn=res);
 translate([0,0,12])rotate([0,90,0])cylinder(20,r_m4,r_m4,center=true,$fn=res);
+translate([9,0,-12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);
+translate([9,0,12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);    
 }
 translate([-40,-12,0]){
 translate([0,0,-12])rotate([0,90,0])cylinder(20,r_m4,r_m4,center=true,$fn=res);
 translate([0,0,12])rotate([0,90,0])cylinder(20,r_m4,r_m4,center=true,$fn=res);
+translate([9,0,-12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);
+translate([9,0,12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);    
+
 }
 
 }
@@ -152,10 +172,15 @@ translate([-depth,-back_len/2,-20])cube([78,sides_thick,back_h]);
 }
 translate([2,0,0])filament();
 //jhead head
-translate([6,-56,0])rotate([90,0,0])cylinder(3.5,r_jhead,r_jhead,center=true,$fn=res);
+translate([6,-56,0])rotate([90,0,0])cylinder(5,r_jhead,r_jhead,center=true,$fn=res);
+
+//m4 bolts
 translate([0,-20,0])bolts();
 translate([4-23,-52,0])rotate([90,0,0])cylinder(40,2.25,2.25,center=true,$fn=res);
 translate([4+23,-52,0])rotate([90,0,0])cylinder(40,2.25,2.25,center=true,$fn=res);
+translate([4-23,-44,0])rotate([90,0,0])cylinder(5,4.25,4.25,center=true,$fn=6);
+translate([4+23,-44,0])rotate([90,0,0])cylinder(5,4.25,4.25,center=true,$fn=6);
+
 translate([-10,-20,0])bolts();
 }
 }
@@ -171,7 +196,7 @@ translate([19,-40,0])rotate([0,-90,0])translate([-262,-75,-5])import("Idler.stl"
 }
 //filament
 module filament(){
-translate([4,0,0])rotate([90,0,0])cylinder(200,1.35,1.35,center=true,$fn=res);
+translate([4,0,0])rotate([90,0,0])cylinder(200,1.65,1.65,center=true,$fn=res);
 }
 
 //m3 screw
@@ -186,14 +211,14 @@ module pinch_body(){
         //hinge
 difference(){
     union(){
-translate([14,-18,0])cylinder(10,7,7,center=true,$fn=res);
-translate([10,-18,0])cube([10,14,10],center=true);
+translate([14,-18,0])cylinder(10,5,5,center=true,$fn=res);
+translate([8,-18,0])cube([10,10,10],center=true);
     }
     //m3 hinge
    //m3 screw
 translate([14,-18])cylinder(50,1.75,1.75,center=true,$fn=res); 
 //filament
-translate([2,0,0])filament();
+translate([0,0,0])filament();
     
 }
 
@@ -222,11 +247,13 @@ cylinder(11,3.5,3.5,center=true,$fn=res);
 filament();
 //m3 screw
 translate([0,15,0]){
-translate([0,0,-8])rotate([0,90,0])cylinder(50,1.5,1.5,center=true,$fn=res);
+translate([0,0,-8])rotate([0,90,0])cylinder(50,1.65,1.65,center=true,$fn=res);
 translate([0,0,8])rotate([0,90,0])cylinder(50,1.65,1.65,center=true,$fn=res);
 }
+translate([0,15,12])cube([3,5.65,20],center=true); 
+translate([0,15,-12])cube([3,5.65,20],center=true); 
 }
-    
+   
 }
 module body(){
 apart=20;
