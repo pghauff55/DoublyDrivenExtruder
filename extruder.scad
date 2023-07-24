@@ -53,7 +53,7 @@ rotate([0,90,0]){
      }
 }}
 spring();
-idlers(x,15,33);
+idlers(x,15,33,-15);
 filament_length_detector();
 pressure_adjuster(x*1.35,-50,-15,20);
 translate([-40,20,31]){
@@ -65,18 +65,21 @@ translate([0,-20,40*z])rotate([0,180,0]){
 translate([0,0,4*z+za])color("grey")bolt(8,65);
 translate([0,0,22*z])bearing(model=608);
 translate([0,0,52*z])bearing(model=608);
-translate([0,0,65*z])mirror([0,0,1])flat_nut(8);
-import("extruder-gears-1.stl");
+translate([0,0,65*z])mirror([0,0,1])color("silver")flat_nut(8);
+translate([0,0,za/2])import("extruder-gears-1.stl");
+axis_line();
 }
 
 
 translate([0,20,26*z])rotate([0,180,0]){
-translate([0,0,50*z])mirror([0,0,1])flat_nut(8);
+translate([0,0,50*z])mirror([0,0,1])color("silver")flat_nut(8);
 translate([0,0,7*z])bearing(model=608);
 translate([0,0,37*z])bearing(model=608);
 
 translate([0,0,-10*z+za])color("grey")bolt(8,65);
-mirror([0,0,1])color("blue")import("extruder-gears-2.stl");
+translate([0,0,za/2])mirror([0,0,1])color("blue")import("extruder-gears-2.stl");
+axis_line();
+
 }
 
 }
@@ -91,7 +94,26 @@ main_body();
 
 
 
+module axis_line(){
 
+//axis lines
+translate([0,0,100])color("red"){
+translate([0,0,30])cylinder(30,0.2,0.2,center=true,$fn=res);
+translate([0,0,0])cylinder(5,0.2,0.2,center=true,$fn=res);
+translate([0,0,-30])cylinder(30,0.2,0.2,center=true,$fn=res);
+}
+translate([0,0,-100])color("red"){
+translate([0,0,30])cylinder(30,0.2,0.2,center=true,$fn=res);
+translate([0,0,0])cylinder(5,0.2,0.2,center=true,$fn=res);
+translate([0,0,-30])cylinder(30,0.2,0.2,center=true,$fn=res);
+}
+translate([0,0,0])color("red"){
+translate([0,0,30])cylinder(30,0.2,0.2,center=true,$fn=res);
+translate([0,0,0])cylinder(5,0.2,0.2,center=true,$fn=res);
+translate([0,0,-30])cylinder(30,0.2,0.2,center=true,$fn=res);
+}
+
+}
 
 
 
@@ -113,8 +135,10 @@ module spring(){
 }
 
 
-module idlers(x,xa,xc){
-translate([(5)+xc,0,0])
+module idlers(x,xa,xc,xd){
+translate([14,39,xd])color("silver")bolt(3,30);
+translate([14,39,-xd])color("silver")flat_nut(3);
+translate([1+xc,-3,0])
 rotate([0,0,-(10+xa)*x]){
 translate([25,-15.5,0])rotate([0,90,0]){
 translate([-4,-6,-10])rotate([0,90,0]){
@@ -124,8 +148,9 @@ bearing(model=608);
 import("extruder-idler.stl");
 }
 }
-
-translate([5+xc,0,0])
+translate([14,-39,-xd])color("silver")flat_nut(3);
+translate([14,-39,xd])color("silver")bolt(3,30);
+translate([1+xc,3,0])
 rotate([0,0,(10+xa)*x]){
 translate([25,15.5,0])mirror([0,1,0])rotate([0,90,0]){
 translate([-4,-6,-10])rotate([0,90,0]){
@@ -136,6 +161,8 @@ import("extruder-idler.stl");
 }
 }
 
+translate([-25,20+16.5,25])color("silver")mirror([0,0,1])bolt(3,10);
+translate([-25,20-14.5,25])color("silver")mirror([0,0,1])bolt(3,10);
 
 
 translate([-40,20,10])mirror([0,0,1])color("grey")motor(Nema17);
@@ -160,8 +187,20 @@ module filament_length_detector(){
 
 
 translate([4,0,0]){//wheels
-translate([8,60,0])color("silver")cylinder(5,7,7,center=true,$fn=res);
-translate([-8,60,0])color("silver")cylinder(5,7,7,center=true,$fn=res);
+translate([8,60,0]){color("silver")cylinder(5,7,7,center=true,$fn=res);
+translate([0,0,12])color("silver")mirror([0,0,1])bolt(3,25);
+translate([0,0,-12])color("silver")flat_nut(3);
+translate([13,1,7.5])color("silver")rotate([0,90,0])mirror([0,0,1])bolt(3,10);
+translate([13,1,-7.5])color("silver")rotate([0,90,0])mirror([0,0,1])bolt(3,10);
+}
+translate([-8,60,0]){
+color("silver")cylinder(5,7,7,center=true,$fn=res);
+translate([0,0,14])color("blue")cylinder(5,10,10,center=true,$fn=res);
+translate([0,0,8])color("grey")cylinder(15,2.7,2.7,center=true,$fn=res);
+translate([-12,0,16])color("grey")cube([5,2,1]);
+translate([-12,-4,16])color("grey")cube([5,2,1]);
+translate([-12,4,16])color("grey")cube([5,2,1]);
+}
 }
 difference(){//body
 translate([5,60,0])difference(){
@@ -170,7 +209,14 @@ cube([30,12.5,10],center=true);
 }
 filament();
 translate([4,0,0]){//axles
-translate([8,60,0])cylinder(50,1.65,1.65,center=true,$fn=res);
+translate([8,60,0]){
+translate([-2,0,0])cylinder(50,1.65,1.65,center=true,$fn=res);
+translate([2,0,0])cylinder(50,1.65,1.65,center=true,$fn=res);
+cube([4,3,50],center=true);
+translate([6,1,-7.5])rotate([0,90,0])cylinder(5,1.65,1.65,center=true,$fn=res);
+translate([6,1,7.5])rotate([0,90,0])cylinder(5,1.65,1.65,center=true,$fn=res);
+
+}
 translate([-8,60,0])cylinder(50,2.65,2.65,center=true,$fn=res);
 }
 }
@@ -191,9 +237,12 @@ translate([25*x+xb,0,0])rotate([0,90,0])color("grey")bolt(5,15)
 translate([30+20*x+xd,0,0])cube([5,30,38],center=true);
 translate([50+20*x+xd,0,0])difference(){
 cube([5,30,38],center=true);
-rotate([0,90,0])cylinder(200,7,7,center=true,$fn=res);
-
-}
+rotate([0,90,0]){cylinder(200,7,7,center=true,$fn=res);
+translate([9,9,-30])bolt(3,100);
+translate([-9,9,-30])bolt(3,100);
+translate([9,-9,-30])bolt(3,100);
+translate([-9,-9,-30])bolt(3,100);
+}}
 
 translate([40+20*x+xd,0,17])cube([25,30,5],center=true);
 translate([40+20*x+xd,0,-17])cube([25,30,5],center=true);
@@ -203,7 +252,17 @@ translate([40+20*x+xd,0,-17])cube([25,30,5],center=true);
 //translate([18*x,0,0])cube([18,26,38],center=true);
 //translate([20*x,0,-5])cube([30,31,38],center=true);
 //}
-translate([52*x,0,0])rotate([0,90,0])color("grey")motor(Nema11,5);
+translate([52*x,0,0])rotate([0,90,0]){
+translate([9,9,-30])color("silver")bolt(3,15);
+translate([-9,9,-30])color("silver")bolt(3,15);
+translate([9,-9,-30])color("silver")bolt(3,15);
+translate([-9,-9,-30])color("silver")bolt(3,15);
+color("grey")motor(Nema11,5);
+translate([0,0,-80])axis_line();
+}
+
+
+
 translate([34*x+xb+xc,0,0])rotate([0,90,0])color("silver")spring3D(7,8,15);
 }
 
@@ -232,7 +291,7 @@ module hingeplate(){
 translate([15,0,-15])
 difference(){
 union(){
-translate([-7,0,15])rotate([0,90,0])cylinder(20,6.85,6.85,center=true,$fn=res);
+translate([-7,0,15])rotate([0,90,0])cylinder(20,5.5,5.5,center=true,$fn=res);
 translate([0,-10,2])cube([5,20,26]);
 }
 translate([0,5,15]){
@@ -374,7 +433,7 @@ translate([0,0,0])rotate([0,0,90])import("ParametricHerringboneGears-1.stl");
 module main(){
 difference(){
     union(){
-translate([-2,-5,0])backing();
+translate([-2,-5,0])backing(20);
         
    body();     
     }
@@ -423,7 +482,11 @@ translate([9,0,-12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);
 translate([9,0,12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);    
 }
 translate([-40,-12,0]){
-translate([0,0,-12])rotate([0,90,0])cylinder(20,r_m4,r_m4,center=true,$fn=res);
+translate([0,0,-12])rotate([0,90,0]){
+
+cylinder(20,r_m4,r_m4,center=true,$fn=res);
+
+}
 translate([0,0,12])rotate([0,90,0])cylinder(20,r_m4,r_m4,center=true,$fn=res);
 translate([9,0,-12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);
 translate([9,0,12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);    
@@ -434,11 +497,22 @@ translate([9,0,12])rotate([0,90,0])cylinder(5,r_m4+2,r_m4+2,center=true,$fn=6);
 
 
 //backing
-module backing(){
+module backing(x){
 back_len=108;
 back_h=38;
 depth=48;
 sides_thick=14;
+
+
+translate([-(60+x),-(30),0]){
+translate([0,12,12])rotate([0,90,0])color("silver"){bolt(4,25);translate([0,0,40])flat_nut(4);}
+translate([0,-12,12])rotate([0,90,0])color("silver"){bolt(4,25);translate([0,0,40])flat_nut(4);}
+translate([0,12,-12])rotate([0,90,0])color("silver"){bolt(4,25);translate([0,0,40])flat_nut(4);}
+translate([0,-12,-12])rotate([0,90,0])color("silver"){bolt(4,25);translate([0,0,40])flat_nut(4);}
+}
+
+
+
 difference(){
 translate([0,-3,1]){
  translate([-9,-40,-1-back_h/2])   cube([20,17,back_h]);
@@ -452,13 +526,13 @@ translate([2,0,0])filament();
 translate([6,-56,0])rotate([90,0,0])cylinder(5,r_jhead,r_jhead,center=true,$fn=res);
 
 //m4 bolts
-translate([0,-20,0])bolts();
+translate([-10,-30,0])bolts();
 translate([4-23,-52,0])rotate([90,0,0])cylinder(40,2.25,2.25,center=true,$fn=res);
 translate([4+23,-52,0])rotate([90,0,0])cylinder(40,2.25,2.25,center=true,$fn=res);
 translate([4-23,-44,0])rotate([90,0,0])cylinder(5,4.25,4.25,center=true,$fn=6);
 translate([4+23,-44,0])rotate([90,0,0])cylinder(5,4.25,4.25,center=true,$fn=6);
 
-translate([-10,-20,0])bolts();
+//translate([-10,-20,0])bolts();
 }
 }
 
