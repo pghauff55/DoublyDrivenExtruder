@@ -29,6 +29,13 @@ External Pin to signal move complete
     <img src="extruder2.png" width="1200px"</img> 
 </div>
 
+## TODO
+1. Make primary driver gear smaller to prevent colliding with secondary Driver shaft.
+2. Update nut captures hinge spring m3 bolts x 4. Nut captures too small.
+3. Use two lock nuts to secure the drive_pulley.
+4. Bearing Housings .1 -.2 smaller radius
+5. External pulleys resize larger to fit 130mm or 140mm belt gt2 6mm thick.
+6. Redesign drive_pulley for gt2 belt capture inside pulley
 
 
 <div align="center">
