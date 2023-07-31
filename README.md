@@ -30,6 +30,28 @@ External Pin to signal move complete
 </div>
 
 
+
+<div align="center">
+    <img src="DDextruder_version1-1" width="1200px"</img> 
+</div>
+
+<div align="center">
+    <img src="DDextruder_version1-2" width="1200px"</img> 
+</div>
+
+<div align="center">
+    <img src="DDextruder_version1-3" width="1200px"</img> 
+</div>
+
+<div align="center">
+    <img src="DDextruder_version1-4" width="1200px"</img> 
+</div>
+
+<div align="center">
+    <img src="DDextruder_version1-52" width="1200px"</img> 
+</div>
+
+
 ## doublydrivenextruder-test
 
 Operates Hotend with a TemperatureController
