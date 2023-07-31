@@ -32,23 +32,23 @@ External Pin to signal move complete
 
 
 <div align="center">
-    <img src="DDextruder_version1-1" width="1200px"</img> 
+    <img src="DDextruder_version1-1.jpg" width="1200px"</img> 
 </div>
 
 <div align="center">
-    <img src="DDextruder_version1-2" width="1200px"</img> 
+    <img src="DDextruder_version1-2.jpg" width="1200px"</img> 
 </div>
 
 <div align="center">
-    <img src="DDextruder_version1-3" width="1200px"</img> 
+    <img src="DDextruder_version1-3.jpg" width="1200px"</img> 
 </div>
 
 <div align="center">
-    <img src="DDextruder_version1-4" width="1200px"</img> 
+    <img src="DDextruder_version1-4.jpg" width="1200px"</img> 
 </div>
 
 <div align="center">
-    <img src="DDextruder_version1-52" width="1200px"</img> 
+    <img src="DDextruder_version1-52.jpg" width="1200px"</img> 
 </div>
 
 
