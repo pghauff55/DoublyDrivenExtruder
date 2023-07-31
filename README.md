@@ -2,8 +2,10 @@
 Two bolts drive the drive_pulleys that drives the filament into the hotend . Driven by a gear set and belt and one nema17motor.
 
 Pressure Adjuster
+Reduces pressure in rotations of stepper.
 
 Feedrate Sensor
+Uses a continually rotating high precision 100K potientiometer
 
 Marlin Firmware and Closed Loop Stepper Motor
 https://reprap.org/forum/read.php?415,855273
