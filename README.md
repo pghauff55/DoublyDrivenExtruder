@@ -28,7 +28,15 @@ External Pin to signal move complete
 </div>
 
 
-doublydrivenextruder-test
+## doublydrivenextruder-test
+
+Operates Hotend with a TemperatureController
+Uses two Steppers one for drive and one for pressure adjustment.
+Reads the analog port feedrate sensor.
+
+Uses a timer interrupt.
+
+
 ```
 
 /*
