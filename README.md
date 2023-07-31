@@ -7,6 +7,8 @@ Feedrate Sensor
 
 Marlin Firmware and Closed Loop Stepper Motor
 https://reprap.org/forum/read.php?415,855273
+
+Marlin/Marlin/Configuration_adv.h
 ```
 // Employ an external closed loop controller. Override pins here if needed.
 //#define EXTERNAL_CLOSED_LOOP_CONTROLLER
