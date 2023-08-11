@@ -28,8 +28,40 @@ External Pin to signal move complete
 <div align="center">
     <img src="extruder2.png" width="1200px"</img> 
 </div>
+## VERSION 2
 
-## TODO
+<div align="center">
+    <img src="IMG_20230811_123932.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_123935.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_123938.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_123951.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_123955.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_123959.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_124002.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_124004.jpg" width="1200px"</img> 
+</div>
+<div align="center">
+    <img src="IMG_20230811_124007.jpg" width="1200px"</img> 
+</div>
+
+
+
+
+## VERSION 1TODO
 1. Make primary driver gear smaller to prevent colliding with secondary Driver shaft.
 2. Update nut captures hinge spring m3 bolts x 4. Nut captures too small.
 3. Use two lock nuts to secure the drive_pulley.
