@@ -1,14 +1,14 @@
 
-include <MCAD-master/materials.scad>
-include <MCAD-master/stepper.scad>
-include <MCAD-master/bearing.scad>
-include <MCAD-master/metric_fastners.scad>
-include <MCAD-master/regular_shapes.scad>
+include <MCAD/materials.scad>
+include <MCAD/stepper.scad>
+include <MCAD/bearing.scad>
+include <MCAD/metric_fastners.scad>
+include <MCAD/regular_shapes.scad>
 
 
 
 res=80;
-r_fila=1.41;
+r_fila=1.44;
 r_608=11.1;
 r_m8=4.25;
 r_m8_1=9.0;
@@ -25,14 +25,94 @@ c_frs=5.0;
 wd_frs=0.75;
 n_frs=8;
 apart_main=20;
-r_main=14;
+r_main=18;
 
-assembly(2,0,30);
+//assembly(2,0,30);
 
 //filament_feedrate_sensor(3,w_frs,r_frs,l_frs,s_frs,p_frs,h_frs,c_frs,wd_frs,n_frs,1);
-main_body(apart_main,r_main);
 
-//gears2();
+
+
+//rotate([0,180,90])motor_bracket();
+
+
+
+module motor_bracket(){
+translate([0,50.5,14.5])
+difference(){
+cube([7,7,7],center=true);
+rotate([90,0,0])cylinder(10,1.8,1.8,center=true);
+}
+translate([0,50.5,-14.75])
+difference(){
+cube([7,7,7],center=true);
+rotate([90,0,0])cylinder(10,1.8,1.8,center=true);
+}
+translate([-25,67,17])difference(){
+translate([-7,4,0])cube([50,48,5],center=true);
+    translate([0,3,0]){
+        translate([-5,0,0])cylinder(10,12,12,center=true);
+translate([15.5,15.5,0]){
+    translate([-3,0,0])cylinder(10,1.8,1.8,center=true);
+    translate([-5,0,0])cube([5,3.6,10],center=true);
+    translate([-8,0,0])cylinder(10,1.8,1.8,center=true);
+}
+translate([-15.5,15.5,0]){
+    translate([-3,0,0])cylinder(10,1.8,1.8,center=true);
+    translate([-5,0,0])cube([5,3.6,10],center=true);
+    translate([-8,0,0])cylinder(10,1.8,1.8,center=true);
+}translate([15.5,-15.5,0]){
+    translate([-3,0,0])cylinder(10,1.8,1.8,center=true);
+    translate([-5,0,0])cube([5,3.6,10],center=true);
+    translate([-8,0,0])cylinder(10,1.8,1.8,center=true);
+}translate([-15.5,-15.5,0]){
+    translate([-3,0,0])cylinder(10,1.8,1.8,center=true);
+    translate([-5,0,0])cube([5,3.6,10],center=true);
+    translate([-8,0,0])cylinder(10,1.8,1.8,center=true);
+}
+}
+}
+translate([-5,62,0])cube([5,30,40],center=true);
+}
+
+
+module main_body_main(){
+difference(){
+main_body(apart_main,r_main);
+translate([16,-55,0])cylinder(100,5,5,center=true,$fn=res);
+translate([-10,-55,0])cylinder(100,5,5,center=true,$fn=res);
+translate([-30,-55,0])cylinder(100,5,5,center=true,$fn=res);
+    
+translate([-42,-55,0])cylinder(100,5,5,center=true,$fn=res);
+
+translate([-5,-40,0])cylinder(100,5,5,center=true,$fn=res);
+
+translate([-90,-35,0])rotate([0,90,0])cylinder(100,10,10,center=true,$fn=res);
+    
+    
+translate([-30,35,0])rotate([90,0,0])cylinder(100,10,10,center=true,$fn=res);    
+
+
+
+translate([-27,35.5,0])cylinder(100,6,6,center=true,$fn=res);    
+translate([-27,5.5,0])cylinder(100,6,6,center=true,$fn=res);    
+
+translate([-45,36.75,0])cube([10.5,3.0,100],center=true);
+translate([-45,5.25,0])cube([10.5,3.0,100],center=true);
+
+
+translate([-45,36.5,20])cube([9.5,6.5,10],center=true);
+translate([-45,5.5,20])cube([9.5,6.5,10],center=true);
+
+translate([-56,0,0])cube([10,100,100],center=true);
+
+translate([-11,20,-0.5])cylinder(12,r_main,r_main,center=true,$fn=res); 
+
+}
+}
+
+
+gears2();
 
 //translate([-9,20,-5])scale([1,1,0.95])pulley_driver();
 
@@ -587,7 +667,9 @@ translate([-2,-5,0])backing(20);///////////////// module backing
         
    body(apart,r);     
     }
-    translate([-60,-2,-20])cube([45,45,40]);
+    translate([-67,-2,-20])cube([45,45,40]);
+     translate([-50,-2,-6.5])cube([45,45,12]);
+     translate([-28,-42,-6.5])cube([25,25,12]);
 }
 translate([-(r-4),20,0])rotate([0,0,180])translate([38,0,0])nema17mount();
 }
@@ -742,7 +824,7 @@ translate([0,0,0])filament();
 }
 
 difference(){
- translate([-3,4,0])cube([25,38,38],center=true);  
+ translate([-6,4,0])cube([30,38,38],center=true);  
 
 translate([-(r-4),0,0]){
      //hobbed bolt
@@ -775,8 +857,8 @@ translate([0,15,0]){
 translate([0,0,-8])rotate([0,90,0])cylinder(50,1.65,1.65,center=true,$fn=res);
 translate([0,0,8])rotate([0,90,0])cylinder(50,1.65,1.65,center=true,$fn=res);
 }
-translate([0,15,12])cube([3,5.65,20],center=true); 
-translate([0,15,-12])cube([3,5.65,20],center=true); 
+translate([0,15,12])cube([3,6.95,20],center=true); 
+translate([0,15,-12])cube([3,6.95,20],center=true); 
 }
    
 }
@@ -934,18 +1016,21 @@ module gears2(){
 //import gears
     difference(){
     union(){
-    translate([0,0,1.75])cylinder(9.5,21,21,center=true,$fn=res);
-translate([0,0,6])rotate([0,0,90])import("extruder-drive-pulley.stl");
+    translate([0,0,1.75])cylinder(9.5,18,18,center=true,$fn=res);
+translate([0,0,6])        intersection(){
+translate([0,0,6])cylinder(14,19.15,19.15,center=true,$fn=res);
+ translate([0,0,0])rotate([0,0,90])import("extruder-drive-pulley56T.stl");
+        }
 //import gears
         translate([0,0,-25])
     difference(){
-translate([0,0,30])rotate([0,0,0])mirror([0,0,1])import("ParametricHerringboneGears.stl");
+translate([0,0,28])rotate([0,0,0])mirror([0,0,1])import("ParametricHerringboneGears.stl");
         cube([200,200,44],center=true);
     }
 }
     cylinder(100,4.25,4.25,center=true,$fn=res);
-    translate([0,0,4])cylinder(10,7.85,7.85,center=true,$fn=6);
-    translate([0,0,10])cylinder(12,8.25,8.25,center=true,$fn=res);
+    translate([0,0,8])cylinder(10,7.85,7.85,center=true,$fn=6);
+    translate([0,0,2])cylinder(12,8.25,8.25,center=true,$fn=res);
 }
 }
 
@@ -953,8 +1038,11 @@ module gears(){
 //import gears
     difference(){
     union(){
-    translate([0,0,12])cylinder(10,8.15,8.15,center=true,$fn=res);
-translate([0,0,0])rotate([0,0,90])import("extruder-drive-pulley.stl");
+    translate([0,0,10])cylinder(4,8.15,8.15,center=true,$fn=res);
+        intersection(){
+translate([0,0,6])cylinder(14,19.15,19.15,center=true,$fn=res);
+ translate([0,0,0])rotate([0,0,90])import("extruder-drive-pulley57T.stl");
+        }
 //import gears
    // difference(){
 //translate([0,0,30])rotate([0,0,0])mirror([0,0,1])import("ParametricHerringboneGears.stl");
@@ -962,8 +1050,8 @@ translate([0,0,0])rotate([0,0,90])import("extruder-drive-pulley.stl");
    // }
 }
    cylinder(100,4.25,4.25,center=true,$fn=res);
-   translate([0,0,5])cylinder(10,7.5,7.5,center=true,$fn=6);
-   translate([0,0,0])cylinder(10,8.25,8.25,center=true,$fn=res);
+   translate([0,0,3])cylinder(10,7.5,7.5,center=true,$fn=6);
+   translate([0,0,-2])cylinder(10,8.25,8.25,center=true,$fn=res);
 }
 }
 //import

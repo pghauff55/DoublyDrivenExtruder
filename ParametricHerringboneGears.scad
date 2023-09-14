@@ -5,7 +5,7 @@
 //
 // Licensed under the BSD license.
 include <MCAD/involute_gears.scad> 
-
+$fn=60;
 
 // WHAT TO GENERATE?
 generate = 1;    // GENERATE BOTH GEARS FOR VIEWING
@@ -13,28 +13,28 @@ generate = 1;    // GENERATE BOTH GEARS FOR VIEWING
 // generate = 2;    // GENERATE DRIVE GEAR FOR PRINTING
 
 // OPTIONS COMMON TO BOTH GEARS:
-distance_between_axels = 40;
+distance_between_axels = 44.5;
 gear_h = 8;
 gear_shaft_h = 10;
 
 
 // GEAR1 (SMALLER GEAR, STEPPER GEAR) OPTIONS:
 // It's helpful to choose prime numbers for the gear teeth.
-gear1_teeth = 13;
-gear1_shaft_d = 5.25;  			// diameter of motor shaft
+gear1_teeth = 17;
+gear1_shaft_d = 4.9;  			// diameter of motor shaft
 gear1_shaft_r  = gear1_shaft_d/2;	
 // gear1 shaft assumed to fill entire gear.
 // gear1 attaches by means of a captive nut and bolt (or actual setscrew)
-gear1_setscrew_offset = 4;			// Distance from motor on motor shaft.
-gear1_setscrew_d         = 3.15;		
+gear1_setscrew_offset = 5;			// Distance from motor on motor shaft.
+gear1_setscrew_d         = 3.25;		
 gear1_setscrew_r          = gear1_setscrew_d/2;
-gear1_captive_nut_d = 5.5;
+gear1_captive_nut_d = 5.95;
 gear1_captive_nut_r  = gear1_captive_nut_d/2;
-gear1_captive_nut_h = 2;
+gear1_captive_nut_h = 3;
 
 
 // GEAR2 (LARGER GEAR, DRIVE SHAFT GEAR) OPTIONS:
-gear2_teeth = 43;
+gear2_teeth = 51;
 gear2_shaft_d = 8.5;
 gear2_shaft_r  = gear2_shaft_d/2;
 // gear2 has settable outer shaft diameter.
